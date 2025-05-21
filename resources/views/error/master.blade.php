@@ -9,6 +9,10 @@
 
     @include('inc.head')
 
+    <!-- Favicons -->
+    <link href="{{ asset('admin/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('admin/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link
@@ -26,70 +30,24 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('admin/css/style.css') }}" rel="stylesheet">
-    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
-    <style>
-        .table-responsive {
-            overflow-x: auto !important;
-            -webkit-overflow-scrolling: touch;
-        }
-    </style>
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
 </head>
 
 <body>
 
-<!-- ======= Header ======= -->
-@include('layouts.header')
-<!-- End Header -->
-
-<!-- ======= Sidebar ======= -->
-@include('layouts.sidebar')
-<!-- End Sidebar-->
-
 @include('sweetalert::alert')
 
 <!-- ======= Main ======= -->
-<main id="main" class="main">
+<main>
 
     @yield('content')
 
 </main>
 <!-- End #main -->
 
-<!-- ======= Footer ======= -->
-@include('layouts.footer')
-<!-- End Footer -->
-
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
-
-<script>
-    $(document).ready(function () {
-        $(document).on('click', '.btnShowOrHide', function (e) {
-            e.preventDefault();
-            const text = $(this).text();
-            if (text === 'Mở rộng') {
-                $(this).text('Thu gọn');
-                $(this).parent().parent().find('form').removeClass('d-none');
-            } else {
-                $(this).text('Mở rộng');
-                $(this).parent().parent().find('form').addClass('d-none');
-            }
-        });
-
-        $('.onlyNumber').on('keypress', function (e) {
-            const char = String.fromCharCode(e.which);
-            if (!/[0-9.]/.test(char)) {
-                e.preventDefault(); // Chặn ký tự không hợp lệ
-            }
-        }).on('input', function () {
-            $(this).val(function (i, val) {
-                return val.replace(/[^0-9.]/g, ''); // Xoá ký tự không hợp lệ
-            });
-        });
-    })
-</script>
 
 <!-- Vendor JS Files -->
 <script src="{{ asset('admin/vendor/apexcharts/apexcharts.min.js') }}"></script>
@@ -103,6 +61,7 @@
 
 <!-- Template Main JS File -->
 <script src="{{ asset('admin/js/main.js') }}"></script>
+
 </body>
 
 </html>

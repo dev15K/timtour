@@ -4,74 +4,82 @@ namespace App\Http\Controllers;
 
 use App\Enums\UserStatus;
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function processLogin()
+    public function processLogin(Request $request)
     {
         if (Auth::check()) {
-            return redirect(route('home'));
+            return redirect(route('admin.home'));
         }
-        return view('auth.login');
+        $url_callback = $request->input('url_callback');
+        return view('auth.login', compact('url_callback'));
     }
 
     public function login(Request $request)
     {
         try {
-            $loginRequest = $request->input('email');
+            $loginRequest = $request->input('login_request');
             $password = $request->input('password');
+            $url_callback = $request->input('url_callback');
 
             $credentials = [
-                'email' => $loginRequest,
                 'password' => $password,
             ];
 
-            $user = User::where('email', $loginRequest)->first();
-            if (!$user) {
-                toast('Account not found!', 'error', 'top-left');
-                return back();
+            if (filter_var($loginRequest, FILTER_VALIDATE_EMAIL)) {
+                $user = User::where('email', $loginRequest)->first();
+                $credentials['email'] = $loginRequest;
+            } else {
+                $user = User::where('phone', $loginRequest)->first();
+                if ($user) {
+                    $credentials['phone'] = $loginRequest;
+                } else {
+                    $user = User::where('username', $loginRequest)->first();
+                    $credentials['username'] = $loginRequest;
+                }
             }
 
-            switch ($user->status) {
-                case UserStatus::ACTIVE:
-                    break;
-                case UserStatus::INACTIVE:
-                    toast('Account not active!', 'error', 'top-left');
-                    return back();
-                case UserStatus::BLOCKED:
-                    toast('Account has been blocked!', 'error', 'top-left');
-                    return back();
-                case UserStatus::DELETED:
-                    toast('Account has been deleted!', 'error', 'top-left');
-                    return back();
+            if (!$user) {
+                toast('User not found!', 'error', 'top-right');
+                return redirect()->back();
+            } else {
+                if ($user->status == UserStatus::INACTIVE) {
+                    toast('User is inactive!', 'error', 'top-right');
+                    return redirect()->back();
+                } else if ($user->status == UserStatus::BLOCKED) {
+                    toast('User has been blocked!', 'error', 'top-right');
+                    return redirect()->back();
+                } else if ($user->status == UserStatus::DELETED) {
+                    toast('User is deleted!', 'error', 'top-right');
+                    return redirect()->back();
+                }
             }
 
             if (Auth::attempt($credentials)) {
-                toast('Welcome ' . $user->email, 'success', 'top-left');
-                return redirect(route('home'));
+                if ($url_callback) {
+                    return redirect()->to($url_callback);
+                }
+
+                return redirect()->route('home');
             }
-            toast('Email or password incorrect', 'error', 'top-left');
-            return back();
+            toast('Login fail! Please check email or password', 'error', 'top-right');
+            return redirect()->back();
         } catch (\Exception $exception) {
-            toast('Error, Please try again!', 'error', 'top-left');
-            return back();
+            toast($exception->getMessage(), 'error', 'top-right');
+            return redirect()->back();
         }
     }
 
     public function logout()
     {
         try {
-            if (Auth::check()) {
-                $user = Auth::user();
-                $user->token = null;
-                $user->save();
-            }
             Auth::logout();
-            return redirect(route('home'));
+            return redirect(route('auth.processLogin'));
         } catch (\Exception $exception) {
-            return redirect(route('home'));
+            return redirect(route('auth.processLogin'));
         }
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminSettingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\HomeController;
@@ -34,12 +35,13 @@ Route::group(['prefix' => 'error'], function () {
     Route::get('/unauthorized', [ErrorController::class, 'unauthorized'])->name('error.unauthorized');
 });
 
-Route::group(['prefix' => ''], function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-});
-
 Route::middleware(['auth'])->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
+    Route::group(['prefix' => 'app-settings'], function () {
+        Route::get('/index', [AdminSettingController::class, 'index'])->name('admin.app.setting.index');
+        Route::post('/store', [AdminSettingController::class, 'appSetting'])->name('admin.app.setting.store');
+    });
 });
 
 
