@@ -6,7 +6,7 @@
             <a class="nav-link {{ Request::routeIs('home') ? 'active' : 'collapsed' }}"
                href="{{ route('home') }}">
                 <i class="bi bi-grid"></i>
-                <span>Trang quản trị</span>
+                <span>{{ __('admin.Dashboard') }}</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
