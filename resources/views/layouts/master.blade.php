@@ -90,7 +90,86 @@
         });
     })
 </script>
+<script>
+    function printItems() {
+        const html = $('#print').clone();
 
+        const printWindow = window.open("", "_blank");
+
+        printWindow.document.open();
+        printWindow.document.write(`
+        <html>
+        <head>
+            <title>In phiếu</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+            <style>
+                @media print {
+                    body {
+                        margin: 0;
+                        padding: 10px;
+                        transform: scale(0.95);
+                        transform-origin: top left;
+                    }
+
+                    .print {
+                        width: 100%;
+                        box-sizing: border-box;
+                        overflow-wrap: break-word;
+                    }
+
+                    table {
+                        width: 100% !important;
+                        table-layout: fixed;
+                    }
+.d-flex {
+        display: flex !important;
+    }
+
+    .justify-content-between {
+        justify-content: space-between !important;
+    }
+
+    .d-flex > div {
+        width: 48%;
+        word-break: break-word;
+    }
+
+                    th, td {
+                        word-wrap: break-word;
+                        white-space: normal;
+                    }
+
+                    * {
+                        box-sizing: border-box;
+                    }
+                }
+
+                body {
+                    font-family: Arial, sans-serif;
+                    font-size: 14px;
+                    padding: 20px;
+                }
+
+                .small {
+                    font-size: 0.5em !important;
+                }
+            </style>
+        </head>
+        <body>
+            ${html.html()}
+        </body>
+        </html>
+    `);
+
+        printWindow.document.close();
+
+        printWindow.onload = function () {
+            printWindow.focus();
+            printWindow.print();
+            printWindow.close();
+        };
+    }
+</script>
 <!-- Vendor JS Files -->
 <script src="{{ asset('admin/vendor/apexcharts/apexcharts.min.js') }}"></script>
 <script src="{{ asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

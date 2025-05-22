@@ -26,6 +26,7 @@
         <form method="post" action="{{ route('admin.items.update', $item) }}">
             @csrf
             @method('PUT')
+            <h4 class="mt-3">Thông tin khách hàng</h4>
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="ma_khach_hang">Mã khách hàng</label>
@@ -67,32 +68,6 @@
 
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="dich_vu">Dịch vụ</label>
-                    <input type="text" class="form-control" id="dich_vu" name="dich_vu"
-                           value="{{ old('dich_vu', $item->dich_vu ?? '') }}">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="loai_dich_vu">Loại dịch vụ</label>
-                    <input type="text" class="form-control" id="loai_dich_vu" name="loai_dich_vu"
-                           value="{{ old('loai_dich_vu', $item->loai_dich_vu ?? '') }}">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label for="nha_cung_cap">Nhà cung cấp</label>
-                    <input type="text" class="form-control" id="nha_cung_cap" name="nha_cung_cap"
-                           value="{{ old('nha_cung_cap', $item->nha_cung_cap ?? '') }}">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="tong_tien">Tổng tiền</label>
-                    <input type="text" class="form-control onlyNumber" id="tong_tien" name="tong_tien"
-                           value="{{ old('tong_tien', $item->tong_tien ?? '') }}">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="form-group col-md-6">
                     <label for="nguoi_dai_dien">Người đại diện</label>
                     <input type="text" class="form-control" id="nguoi_dai_dien" name="nguoi_dai_dien"
                            value="{{ old('nguoi_dai_dien', $item->nguoi_dai_dien ?? '') }}">
@@ -114,6 +89,34 @@
                     <label for="so_luong">Số lượng</label>
                     <input type="text" class="form-control onlyNumber" id="so_luong" name="so_luong"
                            value="{{ old('so_luong', $item->so_luong ?? '') }}">
+                </div>
+            </div>
+
+            <h4 class="mt-3">Nhà cung cấp</h4>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="nha_cung_cap">Nhà cung cấp</label>
+                    <input type="text" class="form-control" id="nha_cung_cap" name="nha_cung_cap"
+                           value="{{ old('nha_cung_cap', $item->nha_cung_cap ?? '') }}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="tong_tien">Tổng tiền</label>
+                    <input type="text" class="form-control onlyNumber" id="tong_tien" name="tong_tien"
+                           value="{{ old('tong_tien', $item->tong_tien ?? '') }}">
+                </div>
+            </div>
+
+            <h4 class="mt-3">Thông tin Dịch vụ</h4>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="dich_vu">Dịch vụ</label>
+                    <input type="text" class="form-control" id="dich_vu" name="dich_vu"
+                           value="{{ old('dich_vu', $item->dich_vu ?? '') }}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="loai_dich_vu">Loại dịch vụ</label>
+                    <input type="text" class="form-control" id="loai_dich_vu" name="loai_dich_vu"
+                           value="{{ old('loai_dich_vu', $item->loai_dich_vu ?? '') }}">
                 </div>
             </div>
 
