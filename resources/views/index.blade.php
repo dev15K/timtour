@@ -35,15 +35,15 @@
                                 <div class="d-flex justify-content-start align-items-center gap-2">
                                     <label for="ngay_search">Ngày: </label>
                                     <input type="date" class="form-control" id="ngay_search"
-                                           value="" name="ngay_search">
+                                           value="{{ $ngay_search }}" name="ngay_search">
                                 </div>
                             </div>
                             <div class="col-md-4 form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="keyword" name="keyword"
-                                           placeholder="" value="">
+                                    <input type="text" class="form-control" id="keyword" name="keyword" onkeydown="enterSearch(event)"
+                                           placeholder="nhân viên, ncc, khách hàng, dịch vụ,..." value="{{ $keyword }}">
                                     <label for="keyword" class="input-group-prepend">
-                                        <button type="button" class="input-group-text">
+                                        <button type="button" class="input-group-text" onclick="searchData()">
                                             <i class="bi bi-search"></i>
                                         </button>
                                     </label>
@@ -59,12 +59,25 @@
             </div>
         </div>
 
+        <script>
+            function enterSearch(event) {
+                if (event.key === "Enter") {
+                    searchData();
+                }
+            }
+            function searchData() {
+                const ngay_search = $('#ngay_search').val();
+                const keyword = $('#keyword').val();
+                window.location.href = "{{ route('home') }}?ngay_search=" + ngay_search + "&keyword=" + keyword;
+            }
+        </script>
+
         <div class="col-12">
             <div class="card recent-sales overflow-auto">
 
                 <div class="card-body">
 
-                    <table class="table table-hover " style="min-width: 4000px">
+                    <table class="table table-hover datatable" style="min-width: 4000px">
                         <colgroup>
                             <col width="50px">
                             <col width="140px">
@@ -179,8 +192,6 @@
                         @endforeach
                         </tbody>
                     </table>
-
-                    {{ $items->links('pagination::bootstrap-5') }}
                 </div>
 
             </div>
