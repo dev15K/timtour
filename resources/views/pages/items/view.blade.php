@@ -13,12 +13,14 @@
         @media screen and (min-width: 1200px) {
             .scale-container {
                 transform: scale(0.6);
+                font-size: 0.9em;
             }
         }
 
         @media screen and (max-width: 1199px) {
             .scale-container {
                 transform: scale(0.5);
+                font-size: 0.9em;
             }
         }
     </style>
@@ -54,21 +56,26 @@
                     </div>
                     <div class="scale-container pt-5 pb-5 mx-4">
                         <div id="print" class="print small">
-                            <div class="d-flex justify-content-center mb-3">
+                            <div class="d-flex justify-content-center align-items-start" style="gap: 60px">
+                                <img class="image_"
+                                     style="object-fit: contain; width: 200px; height: 100px; overflow: hidden"
+                                     src="{{ asset('images/logo.png') }}"
+                                     alt="logo">
                                 <div class="header_info">
-                                    <p class="h2 fw-bold">INBOUND VIETNAM TRAVEL CO., LTD</p>
-                                    <p><strong>Địa chỉ</strong>: No 16 Nguyen Van Ngoc Street, Cong Vi, Ba Dinh, Hanoi
+                                    <p class="h2 fw-bold">Công ty CPTM Du lịch Mười Phương</p>
+                                    <p style="text-wrap: wrap"><strong>Địa chỉ</strong>: Số 6 ngõ 102 đường Hoàng Như tiếp, Phường Bồ Đề, Quận
+                                        Long Biên, TP. Hà Nội
                                     </p>
-                                    <p><strong>Điện thoại</strong>: 0243.5533.999 - <strong>Hotline</strong>: 19000039
-                                    </p>
-                                    <p class="h3 text-center fw-bold mt-5 mb-4">
-                                        PHIẾU DỊCH VỤ TƯ VẤN<br>
-                                        (CONSULTING SERVICE RECEIPT)
+                                    <p><strong>Điện thoại</strong>: 0326818998/0912282887 - <strong>Hotline</strong>:
                                     </p>
                                 </div>
                             </div>
+                            <p class="h3 text-center fw-bold mt-5 mb-4">
+                                PHIẾU DỊCH VỤ TƯ VẤN<br>
+                                (CONSULTING SERVICE RECEIPT)
+                            </p>
 
-                            <div class="d-flex justify-content-between border-bottom py-2">
+                            <div class="d-flex w-100 justify-content-between border-bottom py-2">
                                 <div class="">
                                     <strong class="me-4">Mã đơn hàng/Order code:</strong> {{ $item->ma_don_hang }}
                                 </div>
@@ -77,7 +84,7 @@
                                         class="me-4">Ngày/Date:</strong> {{ \Carbon\Carbon::parse($item->created_at)->format('h:m d/m/Y') }}
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between border-bottom py-2">
+                            <div class="d-flex w-100 justify-content-between border-bottom py-2">
                                 <div class="">
                                     <strong class="me-4">Khách hàng/Customer:</strong> {{ $item->ten_khach_hang }}
                                 </div>
@@ -85,7 +92,7 @@
                                     <strong class="me-4">Điện thoại/Mobile:</strong> {{ $item->so_dien_thoai }}
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between border-bottom py-2 mb-5">
+                            <div class="d-flex w-100 justify-content-between border-bottom py-2 mb-5">
                                 <div class="">
                                     <strong class="me-4">Địa chỉ/Address:</strong> {{ $item->dia_chi }}
                                 </div>
@@ -129,18 +136,19 @@
                                     <td>{{ $item->cccd }}</td>
                                     <td>{{ $item->loai_dich_vu }}</td>
                                     <td>{{ $item->dich_vu }}</td>
-                                    <td style="text-wrap: nowrap">{{ number_format($item->so_luong, 0) }}</td>
-                                    <td style="text-wrap: nowrap">{{ number_format($item->don_gia, 0) }} VND</td>
-                                    <td style="text-wrap: nowrap">{{ number_format($item->thanh_tien, 0) }} VND</td>
+                                    <td>{{ number_format($item->so_luong, 0) }}</td>
+                                    <td>{{ number_format($item->don_gia, 0) }} VND</td>
+                                    <td>{{ number_format($item->thanh_tien, 0) }} VND</td>
                                     <td>{{ $item->loai_tien }}</td>
-                                    <td style="text-wrap: nowrap">{{ number_format($item->quy_doi, 0) }} VND</td>
+                                    <td>{{ number_format($item->quy_doi, 0) }} VND</td>
                                     <td>{{ $item->vat }} %</td>
-                                    <td style="text-wrap: nowrap">{{ number_format($item->phai_tra, 0) }} VND</td>
+                                    <td>{{ number_format($item->phai_tra, 0) }} VND</td>
                                 </tr>
                                 <tr class="align-middle">
                                     <td colspan="10" style="text-align: start;"><strong>Tổng</strong></td>
                                     <td><strong></strong></td>
-                                    <td><strong style="text-wrap: nowrap">{{ number_format($item->phai_tra, 0) }} VND</strong></td>
+                                    <td><strong>{{ number_format($item->phai_tra, 0) }}
+                                            VND</strong></td>
                                 </tr>
                                 <tr>
                                     <td colspan="12" style="text-align: right;">

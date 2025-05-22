@@ -113,6 +113,7 @@
 
                     .print {
                         width: 100%;
+  font-size: 0.8em !important;
             box-sizing: border-box;
             overflow-wrap: break-word;
             word-wrap: break-word;
