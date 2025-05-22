@@ -153,21 +153,21 @@
                                 <td>{{ $item->mst }}</td>
                                 <td>{{ $item->dich_vu }}</td>
                                 <td>{{ $item->nha_cung_cap }}</td>
-                                <td>{{ number_format($item->tong_tien, 0) }} VND</td>
+                                <td style="text-wrap: nowrap">{{ number_format($item->tong_tien, 0) }} VND</td>
                                 <td>{{ $item->nguoi_dai_dien }}</td>
                                 <td>{{ $item->quoc_tich }}</td>
                                 <td>{{ $item->cccd }}</td>
                                 <td>{{ $item->loai_dich_vu }}</td>
                                 <td>{{ $item->noi_dung }}</td>
-                                <td>{{ number_format($item->so_luong, 0) }}</td>
-                                <td>{{ number_format($item->don_gia, 0) }} VND</td>
-                                <td>{{ number_format($item->thanh_tien, 0) }} VND</td>
+                                <td style="text-wrap: nowrap">{{ number_format($item->so_luong, 0) }}</td>
+                                <td style="text-wrap: nowrap">{{ number_format($item->don_gia, 0) }} VND</td>
+                                <td style="text-wrap: nowrap">{{ number_format($item->thanh_tien, 0) }} VND</td>
                                 <td>{{ $item->loai_tien }}</td>
-                                <td>{{ number_format($item->ti_gia, 0) }}</td>
-                                <td>{{ number_format($item->quy_doi, 0) }} VND</td>
+                                <td style="text-wrap: nowrap">{{ number_format($item->ti_gia, 0) }}</td>
+                                <td style="text-wrap: nowrap">{{ number_format($item->quy_doi, 0) }} VND</td>
                                 <td>{{ $item->vat }} %</td>
                                 <td>{{ $item->nhan_vien }}</td>
-                                <td>{{ number_format($item->phai_tra, 0) }} VND</td>
+                                <td style="text-wrap: nowrap">{{ number_format($item->phai_tra, 0) }} VND</td>
                                 <td>
                                     <div class="d-flex gap-2 justify-content-center">
                                         <a href="{{ route('admin.items.detail', $item->id) }}"

@@ -12,13 +12,13 @@
 
         @media screen and (min-width: 1200px) {
             .scale-container {
-                transform: scale(0.7);
+                transform: scale(0.6);
             }
         }
 
         @media screen and (max-width: 1199px) {
             .scale-container {
-                transform: scale(0.6);
+                transform: scale(0.5);
             }
         }
     </style>
@@ -44,7 +44,7 @@
             </div>
         @endif
 
-        <div class="col-12" style="max-height: 70vh; overflow: auto">
+        <div class="col-12" style="max-height: 75vh; overflow: hidden">
             <div class="card recent-sales overflow-auto">
                 <div class="card-body">
                     <div class="d-flex justify-content-end">
@@ -55,7 +55,7 @@
                     <div class="scale-container pt-5 pb-5 mx-4">
                         <div id="print" class="print small">
                             <div class="d-flex justify-content-center mb-3">
-                                <div class="">
+                                <div class="header_info">
                                     <p class="h2 fw-bold">INBOUND VIETNAM TRAVEL CO., LTD</p>
                                     <p><strong>Địa chỉ</strong>: No 16 Nguyen Van Ngoc Street, Cong Vi, Ba Dinh, Hanoi
                                     </p>
@@ -129,18 +129,18 @@
                                     <td>{{ $item->cccd }}</td>
                                     <td>{{ $item->loai_dich_vu }}</td>
                                     <td>{{ $item->dich_vu }}</td>
-                                    <td>{{ number_format($item->so_luong, 0) }}</td>
-                                    <td>{{ number_format($item->don_gia, 0) }} VND</td>
-                                    <td>{{ number_format($item->thanh_tien, 0) }} VND</td>
+                                    <td style="text-wrap: nowrap">{{ number_format($item->so_luong, 0) }}</td>
+                                    <td style="text-wrap: nowrap">{{ number_format($item->don_gia, 0) }} VND</td>
+                                    <td style="text-wrap: nowrap">{{ number_format($item->thanh_tien, 0) }} VND</td>
                                     <td>{{ $item->loai_tien }}</td>
-                                    <td>{{ number_format($item->quy_doi, 0) }} VND</td>
+                                    <td style="text-wrap: nowrap">{{ number_format($item->quy_doi, 0) }} VND</td>
                                     <td>{{ $item->vat }} %</td>
-                                    <td>{{ number_format($item->phai_tra, 0) }} VND</td>
+                                    <td style="text-wrap: nowrap">{{ number_format($item->phai_tra, 0) }} VND</td>
                                 </tr>
                                 <tr class="align-middle">
                                     <td colspan="10" style="text-align: start;"><strong>Tổng</strong></td>
                                     <td><strong></strong></td>
-                                    <td><strong>{{ number_format($item->phai_tra, 0) }} VND</strong></td>
+                                    <td><strong style="text-wrap: nowrap">{{ number_format($item->phai_tra, 0) }} VND</strong></td>
                                 </tr>
                                 <tr>
                                     <td colspan="12" style="text-align: right;">
@@ -160,7 +160,7 @@
                             <p class="text-end" style="margin-top: 2.5%">Ngày {{ \Carbon\Carbon::now()->get('day') }}
                                 tháng {{ \Carbon\Carbon::now()->get('month') }}
                                 năm {{ \Carbon\Carbon::now()->get('year') }}</p>
-                            <table class="w-100 mt-3" style="margin-bottom: 10%">
+                            <table class="w-100 mt-3 signature" style="margin-bottom: 120px">
                                 <colgroup>
                                     <col width="33%">
                                     <col width="33%">

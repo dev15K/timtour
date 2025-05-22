@@ -107,15 +107,20 @@
                     body {
                         margin: 0;
                         padding: 10px;
-                        transform: scale(0.95);
+                       zoom: 0.9;
                         transform-origin: top left;
                     }
 
                     .print {
                         width: 100%;
-                        box-sizing: border-box;
-                        overflow-wrap: break-word;
+            box-sizing: border-box;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
                     }
+
+.header_info{
+text-wrap: nowrap;
+}
 
                     table {
                         width: 100% !important;
@@ -153,6 +158,9 @@
                 .small {
                     font-size: 0.5em !important;
                 }
+.signature {
+margin-bottom: 100px !important;
+}
             </style>
         </head>
         <body>
