@@ -28,7 +28,7 @@ class HomeController extends Controller
                     ->orWhere('dich_vu', 'like', '%' . $keyword . '%');
             });
         }
-        $items = $queries->orderBy('id', 'desc')->get();
+        $items = $queries->orderBy('id', 'desc')->paginate(20);
         return view('index', compact('items', 'ngay_search', 'keyword'));
     }
 }

@@ -67,7 +67,7 @@
             </div>
 
             <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                     <label for="nguoi_dai_dien">Người đại diện</label>
                     <input type="text" class="form-control" id="nguoi_dai_dien" name="nguoi_dai_dien"
                            value="{{ old('nguoi_dai_dien', $item->nguoi_dai_dien ?? '') }}">
@@ -77,22 +77,15 @@
                     <input type="text" class="form-control" id="quoc_tich" name="quoc_tich"
                            value="{{ old('quoc_tich', $item->quoc_tich ?? '') }}">
                 </div>
-            </div>
 
-            <div class="row">
                 <div class="form-group col-md-6">
                     <label for="cccd">CCCD</label>
                     <input type="text" class="form-control" id="cccd" name="cccd"
                            value="{{ old('cccd', $item->cccd ?? '') }}">
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="so_luong">Số lượng</label>
-                    <input type="text" class="form-control onlyNumber" id="so_luong" name="so_luong"
-                           value="{{ old('so_luong', $item->so_luong ?? '') }}">
-                </div>
             </div>
 
-            <h4 class="mt-3">Nhà cung cấp</h4>
+            <h4 class="pt-3 border-top mt-4">Nhà cung cấp</h4>
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="nha_cung_cap">Nhà cung cấp</label>
@@ -106,7 +99,7 @@
                 </div>
             </div>
 
-            <h4 class="mt-3">Thông tin Dịch vụ</h4>
+            <h4 class="pt-3 border-top mt-4">Thông tin Dịch vụ</h4>
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="dich_vu">Dịch vụ</label>
@@ -121,12 +114,17 @@
             </div>
 
             <div class="row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
+                    <label for="so_luong">Số lượng</label>
+                    <input type="text" class="form-control onlyNumber" id="so_luong" name="so_luong"
+                           value="{{ old('so_luong', $item->so_luong ?? '') }}">
+                </div>
+                <div class="form-group col-md-4">
                     <label for="don_gia">Đơn giá</label>
                     <input type="text" class="form-control onlyNumber" id="don_gia" name="don_gia"
                            value="{{ old('don_gia', $item->don_gia ?? '') }}">
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     <label for="thanh_tien">Thành tiền</label>
                     <input type="text" class="form-control onlyNumber bg-secondary bg-opacity-10" id="thanh_tien"
                            name="thanh_tien" value="{{ old('thanh_tien', $item->thanh_tien ?? '') }}">

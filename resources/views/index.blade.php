@@ -40,14 +40,17 @@
                             </div>
                             <div class="col-md-4 form-group">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="keyword" name="keyword" onkeydown="enterSearch(event)"
+                                    <input type="text" class="form-control" id="keyword" name="keyword"
+                                           onkeydown="enterSearch(event)"
                                            placeholder="nhân viên, ncc, khách hàng, dịch vụ,..." value="{{ $keyword }}">
-                                    <label for="keyword" class="input-group-prepend">
-                                        <button type="button" class="input-group-text" onclick="searchData()">
-                                            <i class="bi bi-search"></i>
-                                        </button>
+                                    <label for="keyword" class="input-group">
                                     </label>
                                 </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="input-group-text" onclick="searchData()">
+                                    <i class="bi bi-search"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="col-md-2 d-flex justify-content-end align-items-center">
@@ -65,6 +68,7 @@
                     searchData();
                 }
             }
+
             function searchData() {
                 const ngay_search = $('#ngay_search').val();
                 const keyword = $('#keyword').val();
@@ -77,7 +81,7 @@
 
                 <div class="card-body">
 
-                    <table class="table table-hover datatable" style="min-width: 4000px">
+                    <table class="table table-hover small" style="min-width: 4000px">
                         <colgroup>
                             <col width="50px">
                             <col width="140px">
@@ -144,7 +148,7 @@
                                 <td>{{ $item->ma_khach_hang }}</td>
                                 <td>
                                     <a href="{{ route('admin.items.view', $item->id) }}">
-                                        <h5>{{ $item->ten_khach_hang }}</h5>
+                                        <h6 class="fw-bold">{{ $item->ten_khach_hang }}</h6>
                                     </a>
                                 </td>
                                 <td>{{ $item->so_dien_thoai }}</td>
@@ -178,20 +182,21 @@
                                            class="btn btn-success btn-sm">
                                             <i class="bi bi-eye"></i>
                                         </a>
-                                        <a href="#"
-                                           class="btn btn-warning btn-sm">
-                                            <i class="bi bi-printer"></i>
-                                        </a>
-                                        <a href="#"
-                                           class="btn btn-danger btn-sm">
-                                            <i class="bi bi-trash"></i>
-                                        </a>
+                                        <form action="{{ route('admin.items.delete', $item->id) }}"
+                                              method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-danger btn-sm btnDelete">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
+                    {{ $items->links('pagination::bootstrap-5') }}
                 </div>
 
             </div>
